@@ -1,58 +1,53 @@
-import java.util.Scanner;
+class TourItinerary {
+    private String day;
+    private String time;
+    private String activity;
 
-class Grade {
-    public double getNumericGrade(String letterGrade) {
-        char grade = letterGrade.charAt(0);
-        double value = 0.0;
+    // Constructor
+    public TourItinerary(String day, String time, String activity) {
+        this.day = day;
+        this.time = time;
+        this.activity = activity;
+    }
 
-        switch (grade) {
-            case 'A':
-                value = 4.0;
-                break;
-            case 'B':
-                value = 3.0;
-                break;
-            case 'C':
-                value = 2.0;
-                break;
-            case 'D':
-                value = 1.0;
-                break;
-            case 'F':
-                value = 0.0;
-                break;
-            default:
-                System.out.println("Invalid grade entered.");
-                return -1.0;
-        }
+    // Getter methods
+    public String getDay() {
+        return day;
+    }
 
-        if (letterGrade.length() > 1) {
-            char modifier = letterGrade.charAt(1);
-            if (modifier == '+') {
-                value += 0.3;
-            } else if (modifier == '-') {
-                value -= 0.3;
-            } else {
-                System.out.println("Invalid modifier entered.");
-                return -1.0;
-            }
-        }
+    public String getTime() {
+        return time;
+    }
 
-        return value;
+    public String getActivity() {
+        return activity;
+    }
+
+    // Method to display itinerary details
+    public void displayItinerary() {
+        System.out.println("Day: " + day);
+        System.out.println("Time: " + time);
+        System.out.println("Activity: " + activity);
+        System.out.println();
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a letter grade: ");
-        String letterGrade = scanner.next().toUpperCase(); // Convert to uppercase for case insensitivity
+        // Create an array of TourItinerary objects
+        TourItinerary[] itinerary = {
+                new TourItinerary("sunday", "09:00 AM", "City Tour"),
+                new TourItinerary("sunday", "12:00 PM", "Lunch at Central Park"),
+                new TourItinerary("sunday", "03:00 PM", "Museum Visit"),
+                new TourItinerary("monday", "10:00 AM", "Beach Trip"),
+                new TourItinerary("monday", "01:00 PM", "Lunch by the Sea"),
+                new TourItinerary("monday", "04:00 PM", "Shopping Tour")
+        };
 
-        Grade grade = new Grade();
-        double numericGrade = grade.getNumericGrade(letterGrade);
-
-        if (numericGrade != -1.0) {
-            System.out.println("The numeric value is " + numericGrade + ".");
+        // Print the itinerary for each day
+        System.out.println("Tour Itinerary:");
+        for (TourItinerary t : itinerary) {
+            t.displayItinerary();
         }
     }
 }
